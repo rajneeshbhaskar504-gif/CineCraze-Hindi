@@ -7,24 +7,26 @@ st.set_page_config(
 )
 
 st.title("🎬 CineCraze Hindi")
-st.subheader("Welcome to CineCraze Hindi")
+st.markdown("### Latest Movie Explained Videos")
 
-st.write("यहाँ आपको Movie Explained वीडियो, मूवी की जानकारी और नई अपडेट्स मिलेंगी।")
+search = st.text_input("🔍 Search Movie")
 
-st.text_input("🔍 Search Movie")
+movies = [
+    {
+        "title": "Avengers: Endgame",
+        "category": "Hollywood",
+        "youtube": "https://www.youtube.com/"
+    },
+    {
+        "title": "KGF Chapter 2",
+        "category": "South",
+        "youtube": "https://www.youtube.com/"
+    }
+]
 
-st.header("🔥 Trending Movies")
-
-col1, col2, col3 = st.columns(3)
-
-with col1:
-    st.image("https://placehold.co/300x450?text=Movie+1")
-    st.write("Movie 1")
-
-with col2:
-    st.image("https://placehold.co/300x450?text=Movie+2")
-    st.write("Movie 2")
-
-with col3:
-    st.image("https://placehold.co/300x450?text=Movie+3")
-    st.write("Movie 3")
+for movie in movies:
+    if search.lower() in movie["title"].lower():
+        st.subheader(movie["title"])
+        st.write("Category:", movie["category"])
+        st.link_button("▶ Watch on YouTube", movie["youtube"])
+        st.divider()
